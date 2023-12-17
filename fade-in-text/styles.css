@@ -1,0 +1,83 @@
+body {
+    position: absolute;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background: url('../assets/big.webp') center/cover;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Black transparent background */
+}
+
+#text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 1;
+    /* Ensure text is above the overlay */
+}
+
+.text-line {
+    font-size: 24px;
+    /* Adjust the default font size */
+    position: relative;
+    font-family: 'Dancing Script', cursive;
+    white-space: pre;
+    color: white;
+    /* White text color */
+    margin-bottom: 10px;
+    /* Adjust the space between the lines */
+    max-width: 100%;
+}
+
+.text-line span {
+    font-size: 52px;
+    /* Adjust the default font size */
+    position: relative;
+    opacity: 0;
+    display: inline-block;
+    animation: fadeIn 1s linear forwards;
+    /* Animation: 1s duration */
+}
+
+/* Media query for larger font size on larger screens */
+@media only screen and (max-width: 600px) {
+    .text-line span {
+        font-size: 32px;
+    }
+
+    body {
+        background: url('../assets/small.webp') center;
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+/* Media query for larger font size on larger screens */
+@media only screen and (max-width: 500px) {
+    .text-line span {
+        font-size: 28px;
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}

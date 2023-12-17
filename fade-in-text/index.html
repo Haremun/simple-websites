@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple website</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
+</head>
+<body>
+
+<div id="overlay"></div>
+
+<div id="text-container">
+    <div id="line1" class="text-line"></div>
+    <div id="line2" class="text-line"></div>
+</div>
+
+<script>
+    const line1Container = document.getElementById('line1');
+    const line2Container = document.getElementById('line2');
+    const text1 = 'First line'; // Updated text for the first line
+    const text2 = 'Second line';
+
+    function animateText(container, text) {
+        return new Promise(resolve => {
+            container.innerHTML = ''; // Clear existing text
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text.charAt(i);
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.animationDelay = `${i * 0.05}s`; // Adjust the delay between characters
+
+                container.appendChild(span);
+            }
+
+            // Resolve the promise when the animation completes
+            setTimeout(resolve, text.length * 50);
+        });
+    }
+
+    // Use async function to control the timing
+    async function startAnimation() {
+        await new Promise(resolve => setTimeout(resolve, 1000)); // hack to wait for background image to load
+        await animateText(line1Container, text1);
+        // Additional delay before starting the second line's animation (e.g., 2 seconds)
+        await new Promise(resolve => setTimeout(resolve, 1350));
+        await animateText(line2Container, text2);
+    }
+
+    // Start the animation
+    startAnimation();
+</script>
+
+</body>
+</html>
